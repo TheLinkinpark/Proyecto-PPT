@@ -1,9 +1,10 @@
 puntos_jugador = 0
 puntos_ordenador = 0
 
-def jugada_ordenador():
+def ordenador():
     import random
-    print("Opción ordenador: ", random.randint(0, 5))
+    print(random.randint(0, 4))
+
 
 def menu():
     print("Bienvenido al piedra, papel, tijera, lagarto o spock")
@@ -14,9 +15,28 @@ def menu():
           4. Lagarto
           5. Spock''')
     
+def comparar_jugadas(opcion_ordenador, jugada_jugador):
+    if opcion_ordenador == 0 and jugada_jugador == 3:
+        print("Victoria para ordenador") 
+
+    
 menu()
 
-num = int(input("Elige tu opción: "))
-print("Opción jugador:", num)
+jugada_jugador = int(input("Elige tu opción: "))
 
-jugada_ordenador()
+
+
+# piedra > lagarto
+# piedra > tijeras
+
+# tijera > papel
+# tijeras > lagarto
+
+# papel > piedra
+# papel > spock
+
+# lagarto > spock
+# lagarto > papel
+
+# spock > piedra
+# spock > tijeras
