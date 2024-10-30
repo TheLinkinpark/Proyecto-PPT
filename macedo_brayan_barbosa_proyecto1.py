@@ -1,6 +1,3 @@
-puntos_jugador = 0
-puntos_ordenador = 0
-
 # Número aleatorio que elige el ordenador, las funciones cerradas están terminadas.
 def ordenador():
     import random
@@ -9,18 +6,39 @@ def ordenador():
 
 def menu():
     print("Bienvenido al piedra, papel, tijera, lagarto o spock")
+    print("El primero que llegue a 3 puntos, gana la partida.")
     print('''Escoge tu opción:
           0. Piedra
           1. Papel
           2. Tijera''')
         # 4. Lagarto 5. Spock
-    
-def comparar_jugadas(opcion_ordenador, jugada_jugador):
-    if opcion_ordenador == 0 and jugada_jugador == 3:
-        print("Victoria para ordenador") 
 
-num_ordenador = ordenador()
+puntos_jugador = 0
+puntos_ordenador = 0
 
+# falta añadir el empate, lagarto y spock
+def comparar_jugadas(num_ordenador, num_jugador, puntos_jugador, puntos_ordenador):
+    if num_ordenador == 0 and num_jugador == 2:
+        print("Victoria para ordenador")
+        puntos_ordenador += 1 
+    elif num_ordenador == 1 and num_jugador == 0:
+        print("Victoria para ordenador")
+        puntos_ordenador += 1
+    elif num_ordenador == 2 and num_jugador == 1:
+        print("Victoria para ordenador")
+        puntos_ordenador += 1
+    elif num_jugador == 0 and num_ordenador == 2:
+        print("Victoria para jugador")
+        puntos_ordenador += 1 
+    elif num_jugador == 1 and num_ordenador == 0:
+        print("Victoria para jugador")
+        puntos_ordenador += 1
+    elif num_jugador == 2 and num_ordenador == 1:
+        print("Victoria para jugador")
+        puntos_ordenador += 1
+
+
+# falta añadir lagarto y spock a las funciones
 def opcion_ordenador(num_ordenador):
     match num_ordenador:
         case 0:
@@ -40,14 +58,16 @@ def opcion_jugador(num_jugador):
             print("Jugador eligió Tijera")
 
 menu()
-num_jugador = int(input("Elige tu opción: "))
 
 
-opcion_ordenador(num_ordenador)
-opcion_jugador(num_jugador)
+while puntos_jugador < 3 or puntos_ordenador < 3:
+        num_jugador = int(input("Elige tu opción: "))
+        num_ordenador = ordenador()
 
-
-
+        opcion_ordenador(num_ordenador)
+        opcion_jugador(num_jugador)    
+        comparar_jugadas(num_ordenador, num_jugador, puntos_jugador, puntos_ordenador)
+        print("Recuento de puntos, Jugador:", puntos_jugador, "|", "Ordenador:", puntos_ordenador)
 
 # piedra > lagarto
 # piedra > tijeras
