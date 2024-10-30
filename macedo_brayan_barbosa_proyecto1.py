@@ -3,7 +3,7 @@ def ordenador():
     import random
     return random.randint(0, 2)
 
-
+# 4. Lagarto 5. Spock
 def menu():
     print("Bienvenido al piedra, papel, tijera, lagarto o spock")
     print("El primero que llegue a 3 puntos, gana la partida.")
@@ -11,7 +11,6 @@ def menu():
           0. Piedra
           1. Papel
           2. Tijera''')
-        # 4. Lagarto 5. Spock
 
 # falta añadir lagarto y spock.
 def comparar_jugadas(num_ordenador, num_jugador):
@@ -53,24 +52,16 @@ def comparar_jugadas(num_ordenador, num_jugador):
         victoria_ordenador = False
         return "empate"
 
-# falta añadir lagarto y spock a las funciones
-def opcion_ordenador(num_ordenador):
-    match num_ordenador:
+# falta añadir lagarto y spock a la función
+def opcion(numero):
+    match numero:
         case 0:
-            print("Ordenador eligió Piedra")
+            return "Piedra"
         case 1:
-            print("Ordenador eligió Papel")
+            return "Papel"
         case 2:
-            print("Ordenador eligió Tijera")
+            return "Tijera"
 
-def opcion_jugador(num_jugador):
-    match num_jugador:
-        case 0:
-            print("Jugador eligió Piedra")
-        case 1:
-            print("Jugador eligió Papel")
-        case 2:
-            print("Jugador eligió Tijera")
 
 menu()
 
@@ -78,11 +69,13 @@ puntos_jugador = 0
 puntos_ordenador = 0
 
 while puntos_jugador < 3 and puntos_ordenador < 3:
+        print()
         num_jugador = int(input("Elige tu opción: "))
         num_ordenador = ordenador()
 
-        opcion_ordenador(num_ordenador)
-        opcion_jugador(num_jugador)    
+        print("Has elegido", opcion(num_jugador), "\nEl ordenador ha elegido", opcion(num_ordenador))
+        print()
+
         partida = comparar_jugadas(num_ordenador, num_jugador)
         if partida == True:
             puntos_ordenador += 1
