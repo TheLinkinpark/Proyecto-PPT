@@ -60,6 +60,8 @@ def opcion(numero):
             return "Papel"
         case 2:
             return "Tijera"
+        case _:
+            return "Valor incorrecto. Vuelve a introducirlo"  
 
 
 menu()
