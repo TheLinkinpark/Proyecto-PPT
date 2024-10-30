@@ -1,4 +1,3 @@
-# Número aleatorio que elige el ordenador, las funciones cerradas están terminadas.
 def ordenador():
     import random
     return random.randint(0, 2)
