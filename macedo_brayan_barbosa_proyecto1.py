@@ -72,7 +72,7 @@ while puntos_jugador < 3 and puntos_ordenador < 3:
         num_jugador = int(input("Elige tu opción: "))
         num_ordenador = ordenador()
 
-        print("Has elegido", opcion(num_jugador), "\nEl ordenador ha elegido", opcion(num_ordenador))
+        print("Has elegido:", opcion(num_jugador), "\nEl ordenador ha elegido:", opcion(num_ordenador))
         print()
 
         partida = comparar_jugadas(num_ordenador, num_jugador)
