@@ -11,6 +11,14 @@ def menu():
           1. Papel
           2. Tijera''')
 
+def reglas():
+    print(''' 
+1. Piedra le gana a lagarto y a tijera
+2. Tijera le gana a papel y a lagarto
+3. Papel le gana a piedra y a spock
+4. Lagarto le gana a spock y a papel
+5. Spock le gana a piedra y a tijera''')
+    
 # falta añadir lagarto y spock.
 def comparar_jugadas(num_ordenador, num_jugador):
     victoria_ordenador = False
@@ -64,7 +72,11 @@ def opcion(numero):
 
 
 menu()
-
+respuesta_reglas = input("¿Quieres ver las reglas del juego? (s/n)")
+if respuesta_reglas == "s":
+    reglas()
+else:
+    pass
 
 respuesta ="s"
 while respuesta != "n":
