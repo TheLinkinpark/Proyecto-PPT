@@ -65,40 +65,45 @@ def opcion(numero):
 
 menu()
 
-puntos_jugador = 0
-puntos_ordenador = 0
 
-while puntos_jugador < 3 and puntos_ordenador < 3:
-        print()
-        num_jugador = int(input("Elige tu opción: "))
+respuesta ="s"
+while respuesta != "n":
 
-        while num_jugador != 0 and num_jugador != 1 and num_jugador != 2:
-            num_jugador = int(input("Has elegido una opción incorrecta, vuelve a introducirla: "))
+    puntos_jugador = 0
+    puntos_ordenador = 0
+
+    while puntos_jugador < 3 and puntos_ordenador < 3:
             print()
-        
-        num_ordenador = ordenador()
+            num_jugador = int(input("Elige tu opción: "))
 
-        print("Has elegido:", opcion(num_jugador), "\nEl ordenador ha elegido:", opcion(num_ordenador))
-        print()
+            while num_jugador != 0 and num_jugador != 1 and num_jugador != 2:
+                num_jugador = int(input("Has elegido una opción incorrecta, vuelve a introducirla: "))
+                print()
+            
+            num_ordenador = ordenador()
 
-        partida = comparar_jugadas(num_ordenador, num_jugador)
-        if partida == True:
-            puntos_ordenador += 1
-        elif partida == False:
-            puntos_jugador += 1
-        
-        print("Recuento de puntos:\n", "Jugador:", puntos_jugador, "|", "Ordenador:", puntos_ordenador)
+            print("Has elegido:", opcion(num_jugador), "\nEl ordenador ha elegido:", opcion(num_ordenador))
+            print()
 
-if puntos_jugador == 3:
-    print("Has ganado la partida, ¡Felicidades!")
-elif puntos_ordenador == 3:
-    print("El ordenador ha ganado la partida, ¡Suerte en la próxima!")
+            partida = comparar_jugadas(num_ordenador, num_jugador)
+            if partida == True:
+                puntos_ordenador += 1
+            elif partida == False:
+                puntos_jugador += 1
+            
+            print("Recuento de puntos:\n", "Jugador:", puntos_jugador, "|", "Ordenador:", puntos_ordenador)
+
+    if puntos_jugador == 3:
+        print("Has ganado la partida, ¡Felicidades!")
+    elif puntos_ordenador == 3:
+        print("El ordenador ha ganado la partida, ¡Suerte en la próxima!")
+    
+    respuesta = input("¿Quieres volver a jugar (s/n)? ")
 
 # Añadir al juego:
 # 1. Ordenador tramposo: hace trampas si va perdiendo
-# 2. Cuando termina la partida, pregunta al usuario si quier volver a jugar
-# 3. Lagarto, spock
-# 4. Añadir un menú de reglas para el usuario. Al empezar la partida preguntar si quiere que se muestre dicho menú.
+# 2. Lagarto, spock
+# 3. Añadir un menú de reglas para el usuario. Al empezar la partida preguntar si quiere que se muestre dicho menú.
 #    Si dice que no, directamente empieza el juego.
 
 # piedra > lagarto
