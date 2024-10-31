@@ -6,7 +6,7 @@ def ordenador():
 def menu():
     print("Bienvenido al piedra, papel, tijera, lagarto o spock")
     print("El primero que llegue a 3 puntos, gana la partida.")
-    print('''Escoge tu opción:
+    print('''Opciones:
           0. Piedra
           1. Papel
           2. Tijera''')
@@ -72,19 +72,30 @@ def opcion(numero):
 
 
 menu()
+
+# REGLAS: Antes de comenzar la partida, se le pregunta al usuario si quiere ver las reglas del juego.
+# Esta pregunta sólo se hará antes de comenzar la primera partida,
+# si el usuario comienza una nueva partida sin terminar el bucle, comienza el juego directamente.
+
 respuesta_reglas = input("¿Quieres ver las reglas del juego? (s/n)")
+
 if respuesta_reglas == "s":
     reglas()
 else:
     pass
 
+# PARTIDA: Se realiza la partida con el recuento de puntos, cuando uno de los 2 llega a 3 puntos, termina.
+# Al terminar, se pregunta al usuario si quier volver a jugar, si dice sí, se reinicia el programa.
+# Si dice que no, se cierra el programa.
+
 respuesta ="s"
-while respuesta != "n":
+while respuesta == "s":
 
     puntos_jugador = 0
     puntos_ordenador = 0
 
     while puntos_jugador < 3 and puntos_ordenador < 3:
+
             print()
             num_jugador = int(input("Elige tu opción: "))
 
@@ -112,11 +123,16 @@ while respuesta != "n":
     
     respuesta = input("¿Quieres volver a jugar (s/n)? ")
 
+    if respuesta == "n":
+        print("¡Adiós!")
+    elif respuesta == "s":
+        print("¡El juego comenzará de nuevo!")
+    else:
+        print("Has escogido una opción incorrecta.")
+
 # Añadir al juego:
 # 1. Ordenador tramposo: hace trampas si va perdiendo
 # 2. Lagarto, spock
-# 3. Añadir un menú de reglas para el usuario. Al empezar la partida preguntar si quiere que se muestre dicho menú.
-#    Si dice que no, directamente empieza el juego.
 
 # piedra > lagarto
 # piedra > tijeras
