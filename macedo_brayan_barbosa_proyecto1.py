@@ -94,6 +94,13 @@ if puntos_jugador == 3:
 elif puntos_ordenador == 3:
     print("El ordenador ha ganado la partida, ¡Suerte en la próxima!")
 
+# Añadir al juego:
+# 1. Ordenador tramposo: hace trampas si va perdiendo
+# 2. Cuando termina la partida, pregunta al usuario si quier volver a jugar
+# 3. Lagarto, spock
+# 4. Añadir un menú de reglas para el usuario. Al empezar la partida preguntar si quiere que se muestre dicho menú.
+#    Si dice que no, directamente empieza el juego.
+
 # piedra > lagarto
 # piedra > tijeras
 
