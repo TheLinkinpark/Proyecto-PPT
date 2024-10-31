@@ -60,8 +60,7 @@ def opcion(numero):
             return "Papel"
         case 2:
             return "Tijera"
-        case _:
-            return "Valor incorrecto. Vuelve a introducirlo"  
+
 
 
 menu()
@@ -72,6 +71,11 @@ puntos_ordenador = 0
 while puntos_jugador < 3 and puntos_ordenador < 3:
         print()
         num_jugador = int(input("Elige tu opción: "))
+
+        while num_jugador != 0 and num_jugador != 1 and num_jugador != 2:
+            num_jugador = int(input("Has elegido una opción incorrecta, vuelve a introducirla: "))
+            print()
+        
         num_ordenador = ordenador()
 
         print("Has elegido:", opcion(num_jugador), "\nEl ordenador ha elegido:", opcion(num_ordenador))
