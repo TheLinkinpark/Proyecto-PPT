@@ -20,7 +20,8 @@ def reglas():
 5. Spock le gana a piedra y a tijera''')
     
 # falta añadir lagarto y spock.
-def comparar_jugadas(num_ordenador, num_jugador):
+# falta añadir el type hint de qué devuelve, porque devuelve un booleano, pero si es empate devuelve un string.
+def comparar_jugadas(num_ordenador: int, num_jugador: int):
     victoria_ordenador = False
     if num_ordenador == 0 and num_jugador == 2:
         print("Victoria para ordenador")
@@ -60,7 +61,7 @@ def comparar_jugadas(num_ordenador, num_jugador):
         return "empate"
 
 # falta añadir lagarto y spock a la función
-def opcion(numero):
+def opcion(numero: int) -> str:
     match numero:
         case 0:
             return "Piedra"
@@ -68,6 +69,8 @@ def opcion(numero):
             return "Papel"
         case 2:
             return "Tijera"
+        case _:
+            return "Valor incorrecto"
 
 
 
