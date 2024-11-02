@@ -4,7 +4,7 @@ def ordenador():
 
 # 4. Lagarto 5. Spock
 def menu():
-    print("Bienvenido al piedra, papel, tijera, lagarto o spock")
+    print("Bienvenido al piedra, papel, tijera, lagarto o spock.")
     print("El primero que llegue a 3 puntos, gana la partida.")
     print('''Opciones:
           0. Piedra
@@ -13,15 +13,15 @@ def menu():
 
 def reglas():
     print(''' 
-1. Piedra le gana a lagarto y a tijera
-2. Tijera le gana a papel y a lagarto
-3. Papel le gana a piedra y a spock
-4. Lagarto le gana a spock y a papel
-5. Spock le gana a piedra y a tijera''')
+1. Piedra le gana a lagarto y a tijera.
+2. Tijera le gana a papel y a lagarto.
+3. Papel le gana a piedra y a spock.
+4. Lagarto le gana a spock y a papel.
+5. Spock le gana a piedra y a tijera.''')
     
 # falta añadir lagarto y spock.
-# falta añadir el type hint de qué devuelve, porque devuelve un booleano, pero si es empate devuelve un string.
-def comparar_jugadas(num_ordenador: int, num_jugador: int):
+from typing import Union
+def comparar_jugadas(num_ordenador: int, num_jugador: int) -> Union[bool, str]:
     victoria_ordenador = False
     if num_ordenador == 0 and num_jugador == 2:
         print("Victoria para ordenador")
@@ -59,6 +59,8 @@ def comparar_jugadas(num_ordenador: int, num_jugador: int):
         print("Ha sido empate, no se otorgan puntos")
         victoria_ordenador = False
         return "empate"
+    else:
+        return "Alguno de los valores es incompatible con las comparaciones"
 
 # falta añadir lagarto y spock a la función
 def opcion(numero: int) -> str:
@@ -73,6 +75,13 @@ def opcion(numero: int) -> str:
             return "Valor incorrecto"
 
 
+# COSAS A ARREGLAR:
+# DENTRO DE LA PARTIDA: 
+    # Cuando se pide al usuario introducir su opción, si introduce una cadena de caracteres, sale como "syntax error". Sería
+    # modificarlo para que aparezca el mensaje de error personalizado para que vuelva a introducir la opción. 
+# OPCIÓN REGLAS:
+    # Se debe introducir s/n, si introduzco un valor número, lo cuenta como un "No" en vez de proporcionar un error por introducir
+    # un valor que no debería servir.
 
 menu()
 
@@ -90,6 +99,7 @@ else:
 # PARTIDA: Se realiza la partida con el recuento de puntos, cuando uno de los 2 llega a 3 puntos, termina.
 # Al terminar, se pregunta al usuario si quier volver a jugar, si dice sí, se reinicia el programa.
 # Si dice que no, se cierra el programa.
+
 
 respuesta ="s"
 while respuesta == "s":
