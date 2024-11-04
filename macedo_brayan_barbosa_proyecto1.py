@@ -1,4 +1,8 @@
 def ordenador():
+    '''
+    Función que devuelve un número aleatorio
+    entre 0 y 2 (incluídos).
+    '''
     import random
     return random.randint(0, 2)
 
@@ -79,9 +83,7 @@ def opcion(numero: int) -> str:
 # DENTRO DE LA PARTIDA: 
     # Cuando se pide al usuario introducir su opción, si introduce una cadena de caracteres, sale como "syntax error". Sería
     # modificarlo para que aparezca el mensaje de error personalizado para que vuelva a introducir la opción. 
-# OPCIÓN REGLAS:
-    # Se debe introducir s/n, si introduzco un valor número, lo cuenta como un "No" en vez de proporcionar un error por introducir
-    # un valor que no debería servir.
+
 
 menu()
 
@@ -91,10 +93,14 @@ menu()
 
 respuesta_reglas = input("¿Quieres ver las reglas del juego? (s/n)")
 
+while respuesta_reglas != "s" and respuesta_reglas != "n":
+    respuesta_reglas = input("Has introducido un parámetro incorrecto, vuelve a intentarlo (s/n) ")
+
 if respuesta_reglas == "s":
     reglas()
 else:
     pass
+
 
 # PARTIDA: Se realiza la partida con el recuento de puntos, cuando uno de los 2 llega a 3 puntos, termina.
 # Al terminar, se pregunta al usuario si quier volver a jugar, si dice sí, se reinicia el programa.
