@@ -1,19 +1,20 @@
-def ordenador():
+def ordenador() -> int:
     '''
     Función que devuelve un número aleatorio
     entre 0 y 2 (incluídos).
     '''
     import random
-    return random.randint(0, 2)
+    return random.randint(1, 5)
 
-# 4. Lagarto 5. Spock
 def menu():
     print("Bienvenido al piedra, papel, tijera, lagarto o spock.")
     print("El primero que llegue a 3 puntos, gana la partida.")
     print('''Opciones:
-          0. Piedra
-          1. Papel
-          2. Tijera''')
+          1. Piedra
+          2. Papel
+          3. Tijera
+          4. Lagarto
+          5. Spock''')
 
 def reglas():
     print(''' 
@@ -24,57 +25,27 @@ def reglas():
 5. Spock le gana a piedra y a tijera.''')
     
 # falta añadir lagarto y spock.
-from typing import Union
-def comparar_jugadas(num_ordenador: int, num_jugador: int) -> Union[bool, str]:
-    victoria_ordenador = False
-    if num_ordenador == 0 and num_jugador == 2:
-        print("Victoria para ordenador")
-        victoria_ordenador = True
-        return victoria_ordenador
-    elif num_ordenador == 1 and num_jugador == 0:
-        print("Victoria para ordenador")
-        victoria_ordenador = True
-        return victoria_ordenador
-    elif num_ordenador == 2 and num_jugador == 1:
-        print("Victoria para ordenador")
-        victoria_ordenador = True
-        return victoria_ordenador
-    elif num_jugador == 0 and num_ordenador == 2:
-        print("Victoria para jugador")
-        victoria_ordenador = False
-        return victoria_ordenador
-    elif num_jugador == 1 and num_ordenador == 0:
-        print("Victoria para jugador")
-        victoria_ordenador = False
-        return victoria_ordenador
-    elif num_jugador == 2 and num_ordenador == 1:
-        print("Victoria para jugador")
-        victoria_ordenador = False
-        return victoria_ordenador
-    elif num_jugador == 0 and num_ordenador == 0:
-        print("Ha sido empate, no se otorgan puntos")
-        victoria_ordenador = False
+def comparar_jugadas(num_ordenador, num_jugador):
+    if num_ordenador == num_jugador:
         return "empate"
-    elif num_jugador == 1 and num_ordenador == 1:
-        print("Ha sido empate, no se otorgan puntos")
-        victoria_ordenador = False
-        return "empate"
-    elif num_jugador == 2 and num_ordenador == 2:
-        print("Ha sido empate, no se otorgan puntos")
-        victoria_ordenador = False
-        return "empate"
-    else:
-        return "Alguno de los valores es incompatible con las comparaciones"
+    elif num_ordenador == (num_jugador +1) % 5: # Devuelve True si gana el ordenador, False si gana jugador.
+        return True
+    return False
+
 
 # falta añadir lagarto y spock a la función
 def opcion(numero: int) -> str:
     match numero:
-        case 0:
-            return "Piedra"
         case 1:
-            return "Papel"
+            return "Piedra"
         case 2:
+            return "Papel"
+        case 3:
             return "Tijera"
+        case 4:
+            return "Lagarto"
+        case 5:
+            return "Spock"
         case _:
             return "Valor incorrecto"
 
@@ -118,13 +89,13 @@ while respuesta == "s":
             print()
             num_jugador = int(input("Elige tu opción: "))
 
-            while num_jugador != 0 and num_jugador != 1 and num_jugador != 2:
+            while num_jugador != 1 and num_jugador != 2 and num_jugador != 3 and num_jugador != 4 and num_jugador != 5:
                 num_jugador = int(input("Has elegido una opción incorrecta, vuelve a introducirla: "))
                 print()
             
             num_ordenador = ordenador()
 
-            print("Has elegido:", opcion(num_jugador), "\nEl ordenador ha elegido:", opcion(num_ordenador))
+            print("Has elegido:", opcion(num_jugador), num_jugador, "\nEl ordenador ha elegido:", opcion(num_ordenador), num_ordenador)
             print()
 
             partida = comparar_jugadas(num_ordenador, num_jugador)
