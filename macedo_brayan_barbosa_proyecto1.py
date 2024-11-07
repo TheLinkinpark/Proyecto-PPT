@@ -1,19 +1,20 @@
+from random import randint
 def ordenador() -> int:
-    '''
-    Función que devuelve un número aleatorio
-    entre 0 y 2 (incluídos).
-    '''
-    import random
-    return random.randint(1, 5)
+    """
+    Función que genera un número aleatorio
+    entre 1 y 5 (incluídos).
+    """
+
+    return randint(1, 5)
 
 def menu():
     print("Bienvenido al piedra, papel, tijera, lagarto o spock.")
     print("El primero que llegue a 3 puntos, gana la partida.")
     print('''Opciones:
           1. Piedra
-          2. Papel
-          3. Tijera
-          4. Lagarto
+          2. Tijera
+          3. Lagarto
+          4. Papel
           5. Spock''')
 
 def reglas():
@@ -24,27 +25,31 @@ def reglas():
 4. Lagarto le gana a spock y a papel.
 5. Spock le gana a piedra y a tijera.''')
     
-# falta añadir lagarto y spock.
-def comparar_jugadas(num_ordenador, num_jugador):
+
+def comparar_jugadas(num_ordenador: int, num_jugador:int) -> bool | str:
+    """
+    Compara las jugadas
+
+    Devuelve True si gana el jugador, False si gana ordenador.
+    """
     if num_ordenador == num_jugador:
         return "empate"
-    elif num_ordenador == (num_jugador +1) % 5: # Devuelve True si gana el ordenador, False si gana jugador.
-        return True
-    return False
+    elif num_ordenador == (num_jugador +1) % 5 or num_ordenador == (num_jugador + 2) % 5: # Devuelve True si gana el jugador, False si gana ordenador.
+        return False
+    return True
 
 
-# falta añadir lagarto y spock a la función
 def opcion(numero: int) -> str:
-    match numero:
-        case 1:
+    match numero-1:
+        case 0:
             return "Piedra"
-        case 2:
-            return "Papel"
-        case 3:
+        case 1:
             return "Tijera"
-        case 4:
+        case 2:
             return "Lagarto"
-        case 5:
+        case 3:
+            return "Papel"
+        case 4:
             return "Spock"
         case _:
             return "Valor incorrecto"
@@ -62,8 +67,7 @@ menu()
 # Esta pregunta sólo se hará antes de comenzar la primera partida,
 # si el usuario comienza una nueva partida sin terminar el bucle, comienza el juego directamente.
 
-respuesta_reglas = input("¿Quieres ver las reglas del juego? (s/n)")
-
+respuesta_reglas = input("¿Quiere ver las reglas del juego (s/n)?")
 while respuesta_reglas != "s" and respuesta_reglas != "n":
     respuesta_reglas = input("Has introducido un parámetro incorrecto, vuelve a intentarlo (s/n) ")
 
@@ -103,6 +107,8 @@ while respuesta == "s":
                 puntos_ordenador += 1
             elif partida == False:
                 puntos_jugador += 1
+            else:
+                print("Ha habido un empate")
             
             print("Recuento de puntos:\n", "Jugador:", puntos_jugador, "|", "Ordenador:", puntos_ordenador)
 
