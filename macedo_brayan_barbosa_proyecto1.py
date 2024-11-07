@@ -68,6 +68,7 @@ menu()
 # si el usuario comienza una nueva partida sin terminar el bucle, comienza el juego directamente.
 
 respuesta_reglas = input("¿Quiere ver las reglas del juego (s/n)?")
+
 while respuesta_reglas != "s" and respuesta_reglas != "n":
     respuesta_reglas = input("Has introducido un parámetro incorrecto, vuelve a intentarlo (s/n) ")
 
@@ -103,12 +104,13 @@ while respuesta == "s":
             print()
 
             partida = comparar_jugadas(num_ordenador, num_jugador)
+            
             if partida == True:
                 puntos_ordenador += 1
             elif partida == False:
                 puntos_jugador += 1
             else:
-                print("Ha habido un empate")
+                print("Ha habido un empate, no se sumará ningún punto.")
             
             print("Recuento de puntos:\n", "Jugador:", puntos_jugador, "|", "Ordenador:", puntos_ordenador)
 
