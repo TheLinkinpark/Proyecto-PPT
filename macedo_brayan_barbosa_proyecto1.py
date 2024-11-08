@@ -35,9 +35,10 @@ Cada opción le gana a otras dos:
 
 def comparar_jugadas(num_ordenador: int, num_jugador:int) -> bool | str:
     """
-    Compara las jugadas
+    Compara las jugadas.
 
-    Devuelve True si gana el jugador, False si gana ordenador.
+    Devuelve True si gana el jugador, False si gana ordenador.\n
+    Si es un empate, devuelve "empate".
     """
     if num_ordenador == num_jugador:
         return "empate"
@@ -74,9 +75,11 @@ menu()
 # si el usuario comienza una nueva partida sin terminar el bucle, comienza el juego directamente.
 
 respuesta_reglas = input("¿Quiere ver las reglas del juego (s/n)?")
+respuesta_reglas = respuesta_reglas.lower()
 
 while respuesta_reglas != "s" and respuesta_reglas != "n":
     respuesta_reglas = input("Has introducido un parámetro incorrecto, vuelve a intentarlo (s/n) ")
+
 
 if respuesta_reglas == "s":
     reglas()
@@ -90,6 +93,7 @@ else:
 
 
 respuesta ="s"
+
 while respuesta == "s":
 
     puntos_jugador = 0
@@ -98,22 +102,24 @@ while respuesta == "s":
     while puntos_jugador < 3 and puntos_ordenador < 3:
 
             print()
+            print("|-----------------------------------|")
             num_jugador = int(input("Elige tu opción: "))
 
-            while num_jugador != 1 and num_jugador != 2 and num_jugador != 3 and num_jugador != 4 and num_jugador != 5:
+            while num_jugador < 1 or num_jugador > 5:
                 num_jugador = int(input("Has elegido una opción incorrecta, vuelve a introducirla: "))
-                print()
             
             num_ordenador = ordenador()
-
+            print()
             print("Has elegido:", opcion(num_jugador), "\nEl ordenador ha elegido:", opcion(num_ordenador))
             print()
 
             partida = comparar_jugadas(num_ordenador, num_jugador)
             
             if partida == True:
+                print("¡Punto para el ordenador!")
                 puntos_ordenador += 1
             elif partida == False:
+                print("¡Punto para ti!")
                 puntos_jugador += 1
             else:
                 print("Ha habido un empate, no se sumará ningún punto.")
@@ -121,11 +127,12 @@ while respuesta == "s":
             print("Recuento de puntos:\n", "Jugador:", puntos_jugador, "|", "Ordenador:", puntos_ordenador)
 
     if puntos_jugador == 3:
-        print("Has ganado la partida, ¡Felicidades!")
+        print('''\nHas ganado la partida, ¡Felicidades!''')
     elif puntos_ordenador == 3:
-        print("El ordenador ha ganado la partida, ¡Suerte en la próxima!")
+        print('''\nEl ordenador ha ganado la partida, ¡Suerte en la próxima!''')
     
     respuesta = input("¿Quieres volver a jugar (s/n)? ")
+    respuesta = respuesta.lower()
 
     if respuesta == "n":
         print("¡Adiós!")
