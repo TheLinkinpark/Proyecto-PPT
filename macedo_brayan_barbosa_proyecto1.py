@@ -1,13 +1,16 @@
 from random import randint
 def ordenador() -> int:
-    """
+    '''
     Función que genera un número aleatorio
     entre 1 y 5 (incluídos).
-    """
+    '''
 
     return randint(1, 5)
 
 def menu():
+    '''
+    Muestra el menú del juego
+    '''
     print("Bienvenido al piedra, papel, tijera, lagarto o spock.")
     print("El primero que llegue a 3 puntos, gana la partida.")
     print('''Opciones:
@@ -18,7 +21,11 @@ def menu():
           5. Spock''')
 
 def reglas():
+    '''
+    Muestra las reglas del juego
+    '''
     print(''' 
+Cada opción le gana a otras dos:
 1. Piedra le gana a lagarto y a tijera.
 2. Tijera le gana a papel y a lagarto.
 3. Papel le gana a piedra y a spock.
@@ -37,7 +44,6 @@ def comparar_jugadas(num_ordenador: int, num_jugador:int) -> bool | str:
     elif num_ordenador == (num_jugador +1) % 5 or num_ordenador == (num_jugador + 2) % 5: # Devuelve True si gana el jugador, False si gana ordenador.
         return False
     return True
-
 
 def opcion(numero: int) -> str:
     match numero-1:
@@ -100,7 +106,7 @@ while respuesta == "s":
             
             num_ordenador = ordenador()
 
-            print("Has elegido:", opcion(num_jugador), num_jugador, "\nEl ordenador ha elegido:", opcion(num_ordenador), num_ordenador)
+            print("Has elegido:", opcion(num_jugador), "\nEl ordenador ha elegido:", opcion(num_ordenador))
             print()
 
             partida = comparar_jugadas(num_ordenador, num_jugador)
@@ -127,22 +133,3 @@ while respuesta == "s":
         print("¡El juego comenzará de nuevo!")
     else:
         print("Has escogido una opción incorrecta.")
-
-# Añadir al juego:
-# 1. Ordenador tramposo: hace trampas si va perdiendo
-# 2. Lagarto, spock
-
-# piedra > lagarto
-# piedra > tijeras
-
-# tijera > papel
-# tijeras > lagarto
-
-# papel > piedra
-# papel > spock
-
-# lagarto > spock
-# lagarto > papel
-
-# spock > piedra
-# spock > tijeras
