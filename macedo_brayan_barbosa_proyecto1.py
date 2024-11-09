@@ -115,6 +115,7 @@ while respuesta_juego == "s":
                 num_jugador = int(input("Has elegido una opción incorrecta, vuelve a introducirla: "))
             
             num_ordenador = ordenador()
+
             print()
             print("Has elegido:", opcion(num_jugador), "\nEl ordenador ha elegido:", opcion(num_ordenador))
             print()
@@ -129,7 +130,8 @@ while respuesta_juego == "s":
                 puntos_jugador += 1
             else:
                 print("Ha habido un empate, no se sumará ningún punto.")
-            
+
+           
             print("Recuento de puntos:\n", "Jugador:", puntos_jugador, "|", "Ordenador:", puntos_ordenador)
 
     if puntos_jugador == 3:
