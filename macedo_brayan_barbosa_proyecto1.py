@@ -7,7 +7,7 @@ def ordenador() -> int:
 
     return randint(1, 5)
 
-def menu():
+def menu() -> None:
     '''
     Muestra el menú del juego
     '''
@@ -20,12 +20,13 @@ def menu():
           4. Papel
           5. Spock''')
 
-def reglas():
+def reglas() -> None:
     '''
     Muestra las reglas del juego
     '''
-    print(''' 
+    print("\u2500" * 50, ''' 
 Cada opción le gana a otras dos:
+          
 1. Piedra le gana a lagarto y a tijera.
 2. Tijera le gana a papel y a lagarto.
 3. Papel le gana a piedra y a spock.
@@ -47,6 +48,12 @@ def comparar_jugadas(num_ordenador: int, num_jugador:int) -> bool | str:
     return True
 
 def opcion(numero: int) -> str:
+    '''
+    Función que recibe el número
+    elegido por el usuario y el ordenador.
+
+    Devuelve un string de la opción elegida: piedra, papel...
+    '''
     match numero-1:
         case 0:
             return "Piedra"
@@ -74,7 +81,7 @@ menu()
 # Esta pregunta sólo se hará antes de comenzar la primera partida,
 # si el usuario comienza una nueva partida sin terminar el bucle, comienza el juego directamente.
 
-respuesta_reglas = input("¿Quiere ver las reglas del juego (s/n)?")
+respuesta_reglas = input("¿Quiere ver las reglas del juego (s/n)? ")
 respuesta_reglas = respuesta_reglas.lower()
 
 while respuesta_reglas != "s" and respuesta_reglas != "n":
@@ -92,17 +99,16 @@ else:
 # Si dice que no, se cierra el programa.
 
 
-respuesta ="s"
+respuesta_juego ="s"
 
-while respuesta == "s":
+while respuesta_juego == "s":
 
     puntos_jugador = 0
     puntos_ordenador = 0
 
     while puntos_jugador < 3 and puntos_ordenador < 3:
 
-            print()
-            print("|-----------------------------------|")
+            print("\u2500" * 50)
             num_jugador = int(input("Elige tu opción: "))
 
             while num_jugador < 1 or num_jugador > 5:
@@ -127,16 +133,18 @@ while respuesta == "s":
             print("Recuento de puntos:\n", "Jugador:", puntos_jugador, "|", "Ordenador:", puntos_ordenador)
 
     if puntos_jugador == 3:
+        print("\u2500" * 50)
         print('''\nHas ganado la partida, ¡Felicidades!''')
     elif puntos_ordenador == 3:
+        print("\u2500" * 50)
         print('''\nEl ordenador ha ganado la partida, ¡Suerte en la próxima!''')
     
-    respuesta = input("¿Quieres volver a jugar (s/n)? ")
-    respuesta = respuesta.lower()
+    respuesta_juego = input("¿Quieres volver a jugar (s/n)? ")
+    respuesta_juego = respuesta_juego.lower()
 
-    if respuesta == "n":
+    if respuesta_juego == "n":
         print("¡Adiós!")
-    elif respuesta == "s":
+    elif respuesta_juego == "s":
         print("¡El juego comenzará de nuevo!")
     else:
         print("Has escogido una opción incorrecta.")
