@@ -20,7 +20,7 @@ def menu() -> None:
           3. Lagarto
           4. Papel
           5. Spock
-Si desea volver a leer las opciones durante el juego, escriba "opciones" u "op" cuando se le pida un parámetro.''')
+Si desea volver a leer las opciones durante el juego, escriba "opciones" cuando se le pida un parámetro.''')
 
 def reglas() -> None:
     '''
@@ -85,17 +85,6 @@ def menu_solo_opciones() -> None:
           5. Spock''')
 
 
-def comprobacion_parametros(opcion_jugador):
-    match opcion_jugador:
-        case "1" | "2" | "3" | "4" | "5" | "reglas" | "r" | "opciones" | "op":
-            return True
-        case _:
-            return False
-
-
-
-
-
 menu()
 
 # REGLAS: Antes de comenzar la partida, se le pregunta al usuario si quiere ver las reglas del juego.
@@ -103,7 +92,7 @@ menu()
 # si el usuario comienza una nueva partida sin terminar el bucle, comienza el juego directamente.
 
 respuesta_reglas = input("¿Quiere ver las reglas del juego (s/n)? ")
-print("Cuando quiera volver a leer las reglas, al pedirle introducir una opción, escriba 'reglas' o 'r'.")
+print("Cuando quiera volver a leer las reglas, al pedirle introducir una opción, escriba 'reglas'.")
 respuesta_reglas = respuesta_reglas.lower()
 
 while respuesta_reglas != "s" and respuesta_reglas != "n":
@@ -131,30 +120,36 @@ while respuesta_juego == "s":
     while puntos_jugador < 3 and puntos_ordenador < 3:
 
             print("\u2500" * 50)
-            num_jugador = input("Elija su opción: ")
 
-            while num_jugador == "reglas" or num_jugador == "r":
-                reglas()
-                print("\u2500" * 50)
-                num_jugador = input("Elija su opción: ")
+            opcion_jugador = input("Elija su opción: ")
 
 
-            while num_jugador == "opciones" or num_jugador == "op":
-                menu_solo_opciones()
-                print("\u2500" * 50)
-                num_jugador = input("Elija su opción: ")
+            while opcion_jugador.isdigit() == False:
+                opcion_jugador = opcion_jugador.lower()
+                if opcion_jugador == "reglas": 
+                    reglas()
+                    opcion_jugador = input("Elija su opción: ")
 
-            while comprobacion_parametros(num_jugador) == False:
-                num_jugador = input("Has elegido una opción incorrecta, vuelve a introducirla: ")
+                if opcion_jugador == "opciones":
+                    menu_solo_opciones()
+                    opcion_jugador = input("Elija su opción: ")
 
+                
+            if opcion_jugador.isdigit() == True:
+                num_jugador = int(opcion_jugador)
+
+
+            while num_jugador < 1 or num_jugador > 5:
+                num_jugador = int(input("Has introducido un número incorrecto, vuelve a intentarlo: "))
+                    
 
             num_ordenador = ordenador()
 
             print()
-            print("Has elegido:", opcion(int(num_jugador)), "\nEl ordenador ha elegido:", opcion(num_ordenador))
+            print("Has elegido:", opcion(num_jugador), "\nEl ordenador ha elegido:", opcion(num_ordenador))
             print()
 
-            partida = comparar_jugadas(num_ordenador, int(num_jugador))
+            partida = comparar_jugadas(num_ordenador, num_jugador)
             
             if partida == True:
                 print("¡Punto para el ordenador!")
