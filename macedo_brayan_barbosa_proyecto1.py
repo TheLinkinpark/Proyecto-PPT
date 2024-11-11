@@ -11,6 +11,7 @@ def menu() -> None:
     '''
     Muestra el menú del juego
     '''
+
     print("Bienvenido al piedra, papel, tijera, lagarto o spock.")
     print("El primero que llegue a 3 puntos, gana la partida.")
     print('''Opciones:
@@ -18,7 +19,8 @@ def menu() -> None:
           2. Tijera
           3. Lagarto
           4. Papel
-          5. Spock''')
+          5. Spock
+Si desea volver a leer las opciones durante el juego, escriba "opciones" u "op" cuando se le pida un parámetro.''')
 
 def reglas() -> None:
     '''
@@ -68,11 +70,30 @@ def opcion(numero: int) -> str:
         case _:
             return "Valor incorrecto"
 
+def menu_solo_opciones() -> None:
+    '''
+    Muestra un diferente menú para cuando el usuario comienza
+    de nuevo una partida.
+    '''
 
-# COSAS A ARREGLAR:
-# DENTRO DE LA PARTIDA: 
-    # Cuando se pide al usuario introducir su opción, si introduce una cadena de caracteres, sale como "syntax error". Sería
-    # modificarlo para que aparezca el mensaje de error personalizado para que vuelva a introducir la opción. 
+    print("El primero que llegue a 3 puntos, gana la partida.")
+    print('''Opciones:
+          1. Piedra
+          2. Tijera
+          3. Lagarto
+          4. Papel
+          5. Spock''')
+
+
+def comprobacion_parametros(opcion_jugador):
+    match opcion_jugador:
+        case "1" | "2" | "3" | "4" | "5" | "reglas" | "r" | "opciones" | "op":
+            return True
+        case _:
+            return False
+
+
+
 
 
 menu()
@@ -82,6 +103,7 @@ menu()
 # si el usuario comienza una nueva partida sin terminar el bucle, comienza el juego directamente.
 
 respuesta_reglas = input("¿Quiere ver las reglas del juego (s/n)? ")
+print("Cuando quiera volver a leer las reglas, al pedirle introducir una opción, escriba 'reglas' o 'r'.")
 respuesta_reglas = respuesta_reglas.lower()
 
 while respuesta_reglas != "s" and respuesta_reglas != "n":
@@ -109,18 +131,30 @@ while respuesta_juego == "s":
     while puntos_jugador < 3 and puntos_ordenador < 3:
 
             print("\u2500" * 50)
-            num_jugador = int(input("Elige tu opción: "))
+            num_jugador = input("Elija su opción: ")
 
-            while num_jugador < 1 or num_jugador > 5:
-                num_jugador = int(input("Has elegido una opción incorrecta, vuelve a introducirla: "))
-            
+            while num_jugador == "reglas" or num_jugador == "r":
+                reglas()
+                print("\u2500" * 50)
+                num_jugador = input("Elija su opción: ")
+
+
+            while num_jugador == "opciones" or num_jugador == "op":
+                menu_solo_opciones()
+                print("\u2500" * 50)
+                num_jugador = input("Elija su opción: ")
+
+            while comprobacion_parametros(num_jugador) == False:
+                num_jugador = input("Has elegido una opción incorrecta, vuelve a introducirla: ")
+
+
             num_ordenador = ordenador()
 
             print()
-            print("Has elegido:", opcion(num_jugador), "\nEl ordenador ha elegido:", opcion(num_ordenador))
+            print("Has elegido:", opcion(int(num_jugador)), "\nEl ordenador ha elegido:", opcion(num_ordenador))
             print()
 
-            partida = comparar_jugadas(num_ordenador, num_jugador)
+            partida = comparar_jugadas(num_ordenador, int(num_jugador))
             
             if partida == True:
                 print("¡Punto para el ordenador!")
@@ -141,12 +175,15 @@ while respuesta_juego == "s":
         print("\u2500" * 50)
         print('''\nEl ordenador ha ganado la partida, ¡Suerte en la próxima!''')
     
-    respuesta_juego = input("¿Quieres volver a jugar (s/n)? ")
+    respuesta_juego = input("¿Quiere volver a jugar (s/n)? ")
     respuesta_juego = respuesta_juego.lower()
 
     if respuesta_juego == "n":
         print("¡Adiós!")
     elif respuesta_juego == "s":
+        print("\u2500" * 50)
         print("¡El juego comenzará de nuevo!")
+        print()
+        menu_solo_opciones()
     else:
         print("Has escogido una opción incorrecta.")
