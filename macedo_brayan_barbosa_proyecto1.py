@@ -23,7 +23,7 @@ Por ejemplo, si quieres usar "Tijera", tienes que introducir "2" (sin las comill
 Jugarás contra el ordenador al mejor de 3, el primero que llegue a los 3 puntos, gana la partida.
         
 También dispones de 2 opciones  llamadas "opciones" y "reglas", las cuales te mostrarán el menú de opciones y las reglas del juego, respectivamente.
-A continuación, te pregunto si quieres ver las reglas del juego antes de comenzar, si quieres escribe "s" y para lo contrario, "n" 
+A continuación, te pregunto si quieres ver las reglas del juego antes de comenzar, si quieres escribe "s" y para lo contrario, "n". 
 ''')
 
 
@@ -32,13 +32,17 @@ def reglas() -> None:
     Muestra las reglas del juego
     '''
     print(''' 
-Cada opción le gana a otras dos:
+Las reglas son muy simples, como ya mencionado en el menú inicial, el primero que consiga 3 puntos ganará la partida.
+Cada una de las opciones sirve para ganar a otras 2, pero también serán vencidas por otras 2.
+Aquí te muestro cómo funciona:
           
-1. Piedra le gana a lagarto y a tijera.
-2. Tijera le gana a papel y a lagarto.
-3. Papel le gana a piedra y a spock.
-4. Lagarto le gana a spock y a papel.
-5. Spock le gana a piedra y a tijera.''')
+1. Piedra gana a:  lagarto | tijera.
+2. Tijera gana a:  papel   | lagarto.
+3. Papel gana a:   piedra  | spock.
+4. Lagarto gana a: spock   | papel.
+5. Spock gana a:   piedra  | tijera.
+
+Por último, evidentemente existe la posibilidad del empate, si ocurre, no se otorgará ningún punto.''')
     
 
 def comparar_jugadas(num_ordenador: int, num_jugador:int) -> bool | str:
@@ -81,13 +85,13 @@ def menu_solo_opciones() -> None:
     de nuevo una partida o pide que se vuelvan a mostrar las opciones.
     '''
 
-    print('''\nEl primero que llegue a 3 puntos, gana la partida.''')
-    print('''Opciones:
-          1. Piedra
-          2. Tijera
-          3. Lagarto
-          4. Papel
-          5. Spock''')
+    print('''
+    Opciones:
+        1. Piedra
+        2. Tijera
+        3. Lagarto
+        4. Papel
+        5. Spock''')
 
 
 
@@ -98,7 +102,7 @@ menu()
 # si el usuario comienza una nueva partida sin terminar el bucle, comienza el juego directamente.
 
 respuesta_reglas = input("¿Quiere ver las reglas del juego (s/n)? ")
-print("Cuando quiera volver a leer las reglas, al pedirle introducir una opción, escriba 'reglas'.")
+print("Cuando quiera leer las reglas, al pedirle introducir una opción, escriba 'reglas'.")
 respuesta_reglas = respuesta_reglas.lower()
 
 while respuesta_reglas != "s" and respuesta_reglas != "n":
