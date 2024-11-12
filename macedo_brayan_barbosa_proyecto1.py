@@ -12,21 +12,26 @@ def menu() -> None:
     Muestra el menú del juego
     '''
 
-    print("Bienvenido al piedra, papel, tijera, lagarto o spock.")
-    print("El primero que llegue a 3 puntos, gana la partida.")
-    print('''Opciones:
-          1. Piedra
-          2. Tijera
-          3. Lagarto
-          4. Papel
-          5. Spock
-Si desea volver a leer las opciones durante el juego, escriba "opciones" cuando se le pida un parámetro.''')
+    print('''
+Bienvenido/a al piedra, papel, tijera, lagarto o spock. Te haré una breve explicación de cómo funciona este juego.
+Tienes 5 opciones para jugar, las cuales son las siguientes:
+    
+    1. Piedra | 2. Tijera | 3. Lagarto | 4. Papel | 5. Spock
+
+Estas 5 opciones están asociadas a un número, el cuál debes introducir para hacer la jugada que deseas.
+Por ejemplo, si quieres usar "Tijera", tienes que introducir "2" (sin las comillas) cuando se te lo pida.
+Jugarás contra el ordenador al mejor de 3, el primero que llegue a los 3 puntos, gana la partida.
+        
+También dispones de 2 opciones  llamadas "opciones" y "reglas", las cuales te mostrarán el menú de opciones y las reglas del juego, respectivamente.
+A continuación, te pregunto si quieres ver las reglas del juego antes de comenzar, si quieres escribe "s" y para lo contrario, "n" 
+''')
+
 
 def reglas() -> None:
     '''
     Muestra las reglas del juego
     '''
-    print("\u2500" * 50, ''' 
+    print(''' 
 Cada opción le gana a otras dos:
           
 1. Piedra le gana a lagarto y a tijera.
@@ -73,16 +78,17 @@ def opcion(numero: int) -> str:
 def menu_solo_opciones() -> None:
     '''
     Muestra un diferente menú para cuando el usuario comienza
-    de nuevo una partida.
+    de nuevo una partida o pide que se vuelvan a mostrar las opciones.
     '''
 
-    print("El primero que llegue a 3 puntos, gana la partida.")
+    print('''\nEl primero que llegue a 3 puntos, gana la partida.''')
     print('''Opciones:
           1. Piedra
           2. Tijera
           3. Lagarto
           4. Papel
           5. Spock''')
+
 
 
 menu()
@@ -128,10 +134,12 @@ while respuesta_juego == "s":
                 opcion_jugador = opcion_jugador.lower()
                 if opcion_jugador == "reglas": 
                     reglas()
+                    print("\u2500" * 50)
                     opcion_jugador = input("Elija su opción: ")
 
                 if opcion_jugador == "opciones":
                     menu_solo_opciones()
+                    print("\u2500" * 50)
                     opcion_jugador = input("Elija su opción: ")
 
                 
