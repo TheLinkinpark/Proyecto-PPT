@@ -1,4 +1,5 @@
 from random import randint
+from time import sleep
 def ordenador() -> int:
     '''
     Función que genera un número aleatorio
@@ -14,15 +15,19 @@ def menu() -> None:
 
     print('''
 Bienvenido/a al piedra, papel, tijera, lagarto o spock. Te haré una breve explicación de cómo funciona este juego.
-Tienes 5 opciones para jugar, las cuales son las siguientes:
-    
-    1. Piedra | 2. Tijera | 3. Lagarto | 4. Papel | 5. Spock
-
+Tienes 5 opciones para jugar, las cuales son las siguientes:''')
+    sleep(1.3)
+    print('''  
+    1. Piedra | 2. Tijera | 3. Lagarto | 4. Papel | 5. Spock''')
+    sleep(1.3)
+    print('''
 Estas 5 opciones están asociadas a un número, el cuál debes introducir para hacer la jugada que deseas.
 Por ejemplo, si quieres usar "Tijera", tienes que introducir "2" (sin las comillas) cuando se te lo pida.
-Jugarás contra el ordenador al mejor de 3, el primero que llegue a los 3 puntos, gana la partida.
-        
-También dispones de 2 opciones  llamadas "opciones" y "reglas", las cuales te mostrarán el menú de opciones y las reglas del juego, respectivamente.
+Jugarás contra el ordenador al mejor de 3, el primero que llegue a los 3 puntos, gana la partida.''')
+    sleep(1.3)
+    print('También dispones de 2 opciones  llamadas "opciones" y "reglas", las cuales te mostrarán el menú de opciones y las reglas del juego, respectivamente.')
+    sleep(1.3)
+    print('''
 A continuación, te pregunto si quieres ver las reglas del juego antes de comenzar, si quieres escribe "s" y para lo contrario, "n". 
 ''')
 
@@ -34,8 +39,9 @@ def reglas() -> None:
     print(''' 
 Las reglas son muy simples, como ya mencionado en el menú inicial, el primero que consiga 3 puntos ganará la partida.
 Cada una de las opciones sirve para ganar a otras 2, pero también serán vencidas por otras 2.
-Aquí te muestro cómo funciona:
-          
+Aquí te muestro cómo funciona:''')
+    sleep(1.5)
+    print('''   
 1. Piedra gana a:  lagarto | tijera.
 2. Tijera gana a:  papel   | lagarto.
 3. Papel gana a:   piedra  | spock.
@@ -84,7 +90,7 @@ def menu_solo_opciones() -> None:
     Muestra un diferente menú para cuando el usuario comienza
     de nuevo una partida o pide que se vuelvan a mostrar las opciones.
     '''
-
+    sleep(1)
     print('''
     Opciones:
         1. Piedra
@@ -97,12 +103,8 @@ def menu_solo_opciones() -> None:
 
 menu()
 
-# REGLAS: Antes de comenzar la partida, se le pregunta al usuario si quiere ver las reglas del juego.
-# Esta pregunta sólo se hará antes de comenzar la primera partida,
-# si el usuario comienza una nueva partida sin terminar el bucle, comienza el juego directamente.
 
-respuesta_reglas = input("¿Quiere ver las reglas del juego (s/n)? ")
-print("Cuando quiera leer las reglas, al pedirle introducir una opción, escriba 'reglas'.")
+respuesta_reglas = input("¿Quieres ver las reglas del juego (s/n)? ")
 respuesta_reglas = respuesta_reglas.lower()
 
 while respuesta_reglas != "s" and respuesta_reglas != "n":
@@ -115,9 +117,7 @@ else:
     pass
 
 
-# PARTIDA: Se realiza la partida con el recuento de puntos, cuando uno de los 2 llega a 3 puntos, termina.
-# Al terminar, se pregunta al usuario si quier volver a jugar, si dice sí, se reinicia el programa.
-# Si dice que no, se cierra el programa.
+
 
 
 respuesta_juego ="s"
@@ -131,20 +131,21 @@ while respuesta_juego == "s":
 
             print("\u2500" * 50)
 
-            opcion_jugador = input("Elija su opción: ")
+            opcion_jugador = input("Elije tu opción: ")
 
-
+            sleep(1.5)
             while opcion_jugador.isdigit() == False:
                 opcion_jugador = opcion_jugador.lower()
+
                 if opcion_jugador == "reglas": 
                     reglas()
                     print("\u2500" * 50)
-                    opcion_jugador = input("Elija su opción: ")
+                    opcion_jugador = input("Elije tu opción: ")
 
                 if opcion_jugador == "opciones":
                     menu_solo_opciones()
                     print("\u2500" * 50)
-                    opcion_jugador = input("Elija su opción: ")
+                    opcion_jugador = input("Elije tu opción: ")
 
                 
             if opcion_jugador.isdigit() == True:
@@ -160,7 +161,7 @@ while respuesta_juego == "s":
             print()
             print("Has elegido:", opcion(num_jugador), "\nEl ordenador ha elegido:", opcion(num_ordenador))
             print()
-
+            sleep(1.5)
             partida = comparar_jugadas(num_ordenador, num_jugador)
             
             if partida == True:
@@ -173,24 +174,31 @@ while respuesta_juego == "s":
                 print("Ha habido un empate, no se sumará ningún punto.")
 
            
-            print("Recuento de puntos:\n", "Jugador:", puntos_jugador, "|", "Ordenador:", puntos_ordenador)
+            print("Recuento de puntos:\n", "Tú:", puntos_jugador, "|", "Ordenador:", puntos_ordenador)
+
+
 
     if puntos_jugador == 3:
         print("\u2500" * 50)
         print('''\nHas ganado la partida, ¡Felicidades!''')
+
     elif puntos_ordenador == 3:
         print("\u2500" * 50)
         print('''\nEl ordenador ha ganado la partida, ¡Suerte en la próxima!''')
     
-    respuesta_juego = input("¿Quiere volver a jugar (s/n)? ")
+    respuesta_juego = input("¿Quieres volver a jugar (s/n)? ")
     respuesta_juego = respuesta_juego.lower()
+
+
 
     if respuesta_juego == "n":
         print("¡Adiós!")
+
     elif respuesta_juego == "s":
         print("\u2500" * 50)
         print("¡El juego comenzará de nuevo!")
         print()
         menu_solo_opciones()
+
     else:
         print("Has escogido una opción incorrecta.")
